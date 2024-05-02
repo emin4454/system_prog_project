@@ -1,43 +1,65 @@
 #include "../libfdr/include/fields.h"
 #include "../include/fn_check.h"
+#include "../include/rw_ops.h"
 
 void print_ft_err();
 int main(int argc, char **argv)
 {
 
-    struct fn_check *file_names = new_fn_check_args(argc, argv);
-    int success = 0;
-    if (file_names == NULL)
+    struct fn_check *fn = new_fn_check_args(argc, argv);
+    struct rw_ops *rw;
+    int fn_success = 0; // file name success
+
+    if (fn == NULL)
     {
+        fn_success = 0;
         print_ft_err();
     }
     else
-        success = 1;
-
+    {
+        rw = new_rw_ops(fn);
+        if (rw == NULL)
+        {
+            fn_success = 0;
+            print_ft_err();
+        }
+        else
+        {
+            fn_success = 1;
+        }
+    }
     while (1)
     {
-        if (success == 0)
+        if (fn_success == 0)
         {
             char in[100];
             fgets(in, sizeof(in), stdin);
-            file_names = new_fn_check_in(in);
-            if (file_names == NULL)
+            fn = new_fn_check_in(in);
+            if (fn == NULL)
             {
                 print_ft_err();
                 continue;
             }
             else
             {
-                success = 1;
+                rw = new_rw_ops(fn);
+                if (rw == NULL)
+                {
+                    fn_success = 0;
+                    print_ft_err();
+                }
+                else
+                {
+                    fn_success = 1;
+                }
             }
         }
-        printf("aaaa");
+        else
+            printf("aaaa");
     }
-
-    printf("\n %s %s", file_names->input_fn, file_names->out_fn);
 }
 
 void print_ft_err()
 {
-    printf("arada bosluk olacak sekilde sirasiyla 'dosya1.dat dosya2.dat' giriniz \n");
+    printf("Arada bosluk olacak sekilde sirasiyla 'dosya1.dat dosya2.dat' giriniz \n");
 }

@@ -8,7 +8,7 @@ struct fn_check *new_fn_check_args(int argc, char **argv)
 {
     if (argc != 3)
     {
-        fprintf(stderr, "Sadece 2 arguman giriniz");
+        err_argn();
         return NULL;
     }
     if (check_fns(argv[1], argv[2]) == 0)
@@ -44,7 +44,9 @@ struct fn_check *new_fn_check_in(char *input)
         err_argn();
         return NULL;
     }
-    else if (check_fns(filenames[0], filenames[1]) == 0)
+    int lenght = strlen(filenames[1]);
+    filenames[1][lenght - 1] = '\0';
+    if (check_fns(filenames[0], filenames[1]) == 0)
     {
         return NULL;
     }
@@ -61,13 +63,13 @@ int check_fns(char *in_fn, char *out_fn)
 {
     char *fl_format;
     fl_format = strrchr(in_fn, '.');
-    if (fl_format == NULL || strncmp(fl_format, ".dat", 4) != 0)
+    if (fl_format == NULL || strcmp(fl_format, ".dat") != 0)
     {
         fprintf(stderr, "Ilk argumanin dosya tipi dogru degil (sadece .dat dosyalari uyumludur) \n");
         return 0;
     }
     fl_format = strrchr(out_fn, '.');
-    if (fl_format == NULL || strncmp(fl_format, ".dat", 4) != 0)
+    if (fl_format == NULL || strcmp(fl_format, ".dat") != 0)
     {
         fprintf(stderr, "Ikinci argumanin dosya tipi dogru degil (sadece .dat dosyalari uyumludur) \n");
         return 0;
@@ -77,5 +79,5 @@ int check_fns(char *in_fn, char *out_fn)
 
 void err_argn()
 {
-    fprintf(stderr, "Sadece 2 arguman giriniz");
+    fprintf(stderr, "Sadece 2 arguman giriniz \n");
 }
