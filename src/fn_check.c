@@ -81,3 +81,8 @@ void err_argn()
 {
     fprintf(stderr, "Sadece 2 arguman giriniz \n");
 }
+
+void delete_fn_check(struct fn_check *fn)
+{
+    free(fn);
+}

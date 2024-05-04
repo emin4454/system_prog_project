@@ -9,4 +9,5 @@ struct fn_check
 
 extern struct fn_check *new_fn_check_args(int, char **);
 extern struct fn_check *new_fn_check_in(char *);
+extern void delete_fn_check(struct fn_check *);
 #endif

@@ -55,8 +55,13 @@ int main(int argc, char **argv)
             }
         }
         else
-            printf("aaaa");
+        {
+            start_parsing(rw);
+            break;
+        }
     }
+    delete_fn_check(fn);
+    delete_rw_ops(rw);
 }
 
 void print_ft_err()

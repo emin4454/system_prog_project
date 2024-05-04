@@ -6,9 +6,11 @@ struct rw_ops
 {
     IS is;
     FILE *os;
+    char *buffer;
     int cursor_loc;
 };
 
 extern struct rw_ops *new_rw_ops(struct fn_check *);
 extern void start_parsing(struct rw_ops *);
+extern void delete_rw_ops(struct rw_ops *);
 #endif
