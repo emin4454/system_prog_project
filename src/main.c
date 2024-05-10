@@ -66,5 +66,5 @@ int main(int argc, char **argv)
 
 void print_ft_err()
 {
-    printf("Arada bosluk olacak sekilde sirasiyla 'dosya1.dat dosya2.dat' giriniz \n");
+    printf("Arada bosluk olacak sekilde sirasiyla 'dosya1.dat dosya2.dat' giriniz (eğer boş karakter girerseniz giris.dat ve cikis.dat olarak kabul edilecek) \n");
 }

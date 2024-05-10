@@ -26,6 +26,13 @@ struct fn_check *new_fn_check_args(int argc, char **argv)
 
 struct fn_check *new_fn_check_in(char *input)
 {
+    if (strlen(input) <= 1)
+    {
+        struct fn_check *this = (struct fn_check *)malloc(sizeof(struct fn_check));
+        this->input_fn = "giris.dat";
+        this->out_fn = "cikis.dat";
+        return this;
+    }
     char *found;
     char *filenames[2];
     int i = 0;
